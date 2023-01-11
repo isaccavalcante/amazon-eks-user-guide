@@ -25,7 +25,8 @@ Create an IAM role and attach the required AWS managed policy to it\. You can us
 
    ```
    eksctl create iamserviceaccount \
-     --name ebs-csi-controller-sa \
+     --name ebs-csi-controller-sa \![image](https://user-images.githubusercontent.com/13874084/211929097-7a8a3fda-baf7-4148-ab10-2eeb75afa927.png)
+
      --namespace kube-system \
      --cluster my-cluster \
      --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
@@ -343,12 +344,6 @@ Create an IAM role and attach the required AWS managed policy to it\. You can us
       kubectl annotate serviceaccount ebs-csi-controller-sa \
           -n kube-system \
           eks.amazonaws.com/role-arn=arn:aws:iam::111122223333:role/AmazonEKS_EBS_CSI_DriverRole
-      ```
-
-   1. Restart the `ebs-csi-controller` deployment for the annotation to take effect\.
-
-      ```
-      kubectl rollout restart deployment ebs-csi-controller -n kube-system
       ```
 
 1. Restart the `ebs-csi-controller` deployment for the annotation to take effect\.
